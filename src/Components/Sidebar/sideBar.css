@@ -1,0 +1,20 @@
+.sidebar {
+    @apply bg-slate-500 sm:max-w-[400px] h-[100vh] flex flex-col items-center p-3;
+
+}
+
+
+
+
+
+.sidebarTop {
+    @apply sm:min-h-[10vh] h-[13vh] flex flex-col justify-between items-center text-white
+}
+
+.sidebarBelowmain {
+    @apply sm:min-h-[10vh] h-[13vh] flex flex-col justify-between text-white absolute bottom-[2vh] p-2 text-[18px];
+}
+
+.SidebarBelow {
+    @apply flex items-center gap-3 font-semibold justify-between;
+}
