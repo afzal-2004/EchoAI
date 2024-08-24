@@ -1,13 +1,16 @@
 import { Main } from "./Components/main/Main";
 import { Sidebar } from "./Components/Sidebar/Sidebar";
 
+import { Provider } from "./Context/Provider";
 function App() {
   return (
     <>
-      <main className="flex">
-        <Sidebar />
-        <Main />
-      </main>
+      <Provider>
+        <main className="flex">
+          <Sidebar />
+          <Main />
+        </main>
+      </Provider>
     </>
   );
 }

@@ -4,10 +4,21 @@ import { FaCode, FaMicrophone } from "react-icons/fa6";
 import { ImFilePicture } from "react-icons/im";
 import { MdOutlineFlight } from "react-icons/md";
 import { IoSendSharp } from "react-icons/io5";
-
+import { SiGooglegemini } from "react-icons/si";
 import "./main.css";
+import { modelContext } from "../../Context/CreateContext.jsx";
+import { useContext } from "react";
 
 export const Main = () => {
+  const {
+    recentPrompt,
+    Prompt,
+    setPrompt,
+    Sentrequest,
+    RequestSend,
+    ResponceData,
+  } = useContext(modelContext);
+
   const data = [
     {
       text: "Find hotels in Phuket for a week in March and suggest a packing list.",
@@ -29,7 +40,7 @@ export const Main = () => {
 
   return (
     <>
-      <section className="main">
+      <section className="main ">
         <nav className="navitems">
           <div className=" geminiText ">
             <p>Gemini</p>
@@ -37,34 +48,69 @@ export const Main = () => {
           </div>
           <img src="/AvtarGemini.png" alt="" className="w-[70px]" />
         </nav>
-        <div className="parentDevtext">
-          <div>
-            <p className="devText">Hello Dev ,</p>
-            <p>How can I help You</p>
-          </div>
-        </div>
-
-        <div className="cardContainer">
-          <div className="cardParent ">
-            {data.map((Data, i) => (
-              <div key={i} className=" card    ">
-                <p className="text-[20px]">{Data.text}</p>
-                {Data.icon}
+        {!RequestSend ? (
+          <div className=" h-[70vh]">
+            <div className="parentDevtext">
+              <div>
+                <p className="devText">Hello Dev ,</p>
+                <p>How can I help You</p>
               </div>
-            ))}
+            </div>
+
+            <div className="cardContainer">
+              <div className="cardParent ">
+                {data.map((Data, i) => (
+                  <div key={i} className=" card    ">
+                    <p className="text-[20px]">{Data.text}</p>
+                    {Data.icon}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-        <div className=" PromptContainer">
+        ) : (
+          <>
+            <div className="h-[70vh] overflow-scroll">
+              <div className="requestPrompt">
+                <img
+                  src="./AvtarGemini.png"
+                  alt=""
+                  className="w-[50px] h-[50px]"
+                />
+                <p>{recentPrompt}</p>
+              </div>
+              <div className="responcePrompt ">
+                <SiGooglegemini />
+                <p dangerouslySetInnerHTML={{ __html: ResponceData }}></p>
+              </div>
+            </div>
+          </>
+        )}
+
+        <div className=" PromptContainer ">
           <div className=" promptWindow ">
             <input
               type="text"
               placeholder="Enter a prompt here  "
               className=" promtinput "
+              value={Prompt}
+              onChange={(e) => {
+                e.preventDefault();
+                console.log(e.target.value);
+                setPrompt(e.target.value);
+              }}
             />
             <div className="prompticons">
               <ImFilePicture />
               <FaMicrophone />
-              <IoSendSharp />
+
+              {(Prompt || ResponceData.length > 0) && (
+                <IoSendSharp
+                  onClick={() => {
+                    Sentrequest();
+                  }}
+                />
+              )}
             </div>
           </div>
           <p className=" belowwarning ">

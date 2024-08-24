@@ -1,5 +1,5 @@
 .main {
-    @apply h-[94vh] m-auto p-4 min-w-[90vw]
+    @apply h-[94vh] m-auto p-4 min-w-[90vw] border border-red-500;
 }
 
 .navitems {
@@ -52,6 +52,8 @@
 
 .PromptContainer {
     @apply flex justify-center flex-col items-center;
+
+
 }
 
 .promptWindow {
