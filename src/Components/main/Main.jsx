@@ -17,6 +17,7 @@ export const Main = () => {
     Sentrequest,
     RequestSend,
     ResponceData,
+    loader = true,
   } = useContext(modelContext);
 
   const data = [
@@ -70,20 +71,31 @@ export const Main = () => {
           </div>
         ) : (
           <>
-            <div className="h-[70vh] overflow-scroll">
-              <div className="requestPrompt">
-                <img
-                  src="./AvtarGemini.png"
-                  alt=""
-                  className="w-[50px] h-[50px]"
-                />
-                <p>{recentPrompt}</p>
+            {loader ? (
+              <>
+                <div className="h-[70vh] ">
+                  <hr className="loader" />
+                  <hr className="loader" />
+                  <hr className="loader" />
+                </div>
+              </>
+            ) : (
+              <div className="h-[70vh] overflow-scroll">
+                <div className="requestPrompt">
+                  <img
+                    src="./AvtarGemini.png"
+                    alt=""
+                    className="w-[50px] h-[50px]"
+                  />
+                  <p>{recentPrompt}</p>
+                </div>
+                <div className="responcePrompt ">
+                  <SiGooglegemini />
+                  {/* <p>{ResponceData}</p> */}
+                  <p dangerouslySetInnerHTML={{ __html: ResponceData }}></p>
+                </div>
               </div>
-              <div className="responcePrompt ">
-                <SiGooglegemini />
-                <p dangerouslySetInnerHTML={{ __html: ResponceData }}></p>
-              </div>
-            </div>
+            )}
           </>
         )}
 

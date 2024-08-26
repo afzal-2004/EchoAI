@@ -23,7 +23,7 @@ async function run(prompt) {
 
   const result = await chatSession.sendMessage(prompt);
 
-  console.log(" Responce inside my Ai Model", result.response.text());
+  // console.log(" Responce inside my Ai Model", result.response.text());
 
   const Responce = result.response.text();
   return Responce;

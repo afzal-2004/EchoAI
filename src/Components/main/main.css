@@ -77,3 +77,23 @@
 .belowwarning {
     @apply flex justify-center mt-[2vh] items-center sm:w-[70vw];
 }
+
+.loader {
+    height: 20px;
+
+    width: full;
+    background-color: #f6f7f8;
+    background: linear-gradient(to right, #9edfff, #ffffff, #9edfff);
+    margin: 10px;
+    animation: loader 0.4s infinite ease-in-out;
+}
+
+@keyframes lodaer {
+    0% {
+        background-position: -100% 0%;
+    }
+
+    100% {
+        background-position: 100% 0%;
+    }
+}
