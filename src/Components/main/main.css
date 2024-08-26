@@ -30,6 +30,10 @@
 
 .cardParent {
     @apply flex gap-3 mt-[5vh] p-3 overflow-scroll overflow-y-hidden;
+
+}
+
+.cardParent::-webkit-scrollbar {
     scrollbar-width: none;
 }
 

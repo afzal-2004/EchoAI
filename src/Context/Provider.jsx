@@ -9,15 +9,14 @@ export const Provider = ({ children }) => {
   const [recentPrompt, setrecentPrompt] = useState("");
 
   const Sentrequest = async () => {
+    setrecentPrompt(Prompt);
+
     run(Prompt);
+    setPrompt("");
+    setRequestSend(true);
 
     const GeminiResponce = await run(Prompt);
     setResponceData(GeminiResponce);
-    // if (!Prompt === "") {
-    setRequestSend(true);
-    // }
-    setrecentPrompt(Prompt);
-    setPrompt("");
   };
 
   const value = {
