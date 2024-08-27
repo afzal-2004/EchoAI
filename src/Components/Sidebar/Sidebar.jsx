@@ -2,11 +2,15 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { FaCirclePlus } from "react-icons/fa6";
 import { IoIosHelpCircleOutline, IoMdRefresh } from "react-icons/io";
 import { IoSettings } from "react-icons/io5";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import "./sideBar.css";
 
+import { modelContext } from "../../Context/CreateContext";
+
 export const Sidebar = () => {
+  const { recentPrompt } = useContext(modelContext);
+
   const [openSidebar, setopenSidebar] = useState(false);
   const data = [
     {
@@ -22,6 +26,7 @@ export const Sidebar = () => {
       text: " Activity",
     },
   ];
+
   const handleSidebar = () => {
     setopenSidebar(!openSidebar);
   };
@@ -30,19 +35,26 @@ export const Sidebar = () => {
     <>
       <section className="sidebar navbar ">
         <div className={`sidebarTop ${openSidebar && "items-start"}`}>
-          <GiHamburgerMenu className="text-[35px]" onClick={handleSidebar} />
+          <GiHamburgerMenu
+            className="sm:text-[35px] text-[25px]"
+            onClick={handleSidebar}
+          />
           <p
             className={`flex justify-center items-center gap-3  ${
               openSidebar && "bg-gray-400"
             } p-2  rounded-3xl`}
           >
-            <FaCirclePlus className="text-[35px] " />
-            {openSidebar && <span>New Chat</span>}
+            <FaCirclePlus className="sm:text-[35px] text-[25px] " />
+            {openSidebar && <span className="text-nowrap">New Chat</span>}
           </p>
         </div>
         {openSidebar && (
           <div>
-            <p>What is React....</p>
+            {recentPrompt ? (
+              <p>{recentPrompt.slice(0, 18)}....</p>
+            ) : (
+              <p>Recent </p>
+            )}
           </div>
         )}
 

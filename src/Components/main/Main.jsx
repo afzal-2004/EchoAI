@@ -1,7 +1,7 @@
 import { IoMdArrowDropdown } from "react-icons/io";
 import { FaHotel, FaYoutube } from "react-icons/fa";
-import { FaCode, FaMicrophone } from "react-icons/fa6";
-import { ImFilePicture } from "react-icons/im";
+import { FaCode } from "react-icons/fa6";
+// import { ImFilePicture } from "react-icons/im";
 import { MdOutlineFlight } from "react-icons/md";
 import { IoSendSharp } from "react-icons/io5";
 import { SiGooglegemini } from "react-icons/si";
@@ -62,7 +62,7 @@ export const Main = () => {
               <div className="cardParent ">
                 {data.map((Data, i) => (
                   <div key={i} className=" card    ">
-                    <p className="text-[20px]">{Data.text}</p>
+                    <p className="sm:text-[20px] text-[14px]  ">{Data.text}</p>
                     {Data.icon}
                   </div>
                 ))}
@@ -80,7 +80,7 @@ export const Main = () => {
                 </div>
               </>
             ) : (
-              <div className="h-[70vh] overflow-scroll">
+              <div className="h-[70vh] overflow-scroll ">
                 <div className="requestPrompt">
                   <img
                     src="./AvtarGemini.png"
@@ -91,7 +91,7 @@ export const Main = () => {
                 </div>
                 <div className="responcePrompt ">
                   <SiGooglegemini />
-                  {/* <p>{ResponceData}</p> */}
+
                   <p dangerouslySetInnerHTML={{ __html: ResponceData }}></p>
                 </div>
               </div>
@@ -99,7 +99,7 @@ export const Main = () => {
           </>
         )}
 
-        <div className=" PromptContainer ">
+        <div className=" PromptContainer relative ">
           <div className=" promptWindow ">
             <input
               type="text"
@@ -108,14 +108,11 @@ export const Main = () => {
               value={Prompt}
               onChange={(e) => {
                 e.preventDefault();
-                console.log(e.target.value);
+
                 setPrompt(e.target.value);
               }}
             />
             <div className="prompticons">
-              <ImFilePicture />
-              <FaMicrophone />
-
               {(Prompt || ResponceData.length > 0) && (
                 <IoSendSharp
                   onClick={() => {

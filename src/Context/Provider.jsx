@@ -6,21 +6,18 @@ export const Provider = ({ children }) => {
   const [Prompt, setPrompt] = useState("");
   const [ResponceData, setResponceData] = useState([]);
   const [RequestSend, setRequestSend] = useState(false);
-  const [recentPrompt, setrecentPrompt] = useState("");
+  const [recentPrompt, setrecentPrompt] = useState(null);
   const [loader, setloader] = useState(false);
 
   const Sentrequest = async () => {
     setrecentPrompt(Prompt);
-
-    run(Prompt);
+    setloader(true);
     setPrompt("");
     setRequestSend(true);
-    setloader(true);
 
     const GeminiResponce = await run(Prompt);
-    console.log(GeminiResponce);
+
     let ResponceArray = GeminiResponce.split("**");
-    console.log(GeminiResponce.split("**"));
 
     let newResponce = "";
     for (let i = 0; i < ResponceArray.length; i++) {

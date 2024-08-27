@@ -1,6 +1,5 @@
 .sidebar {
     @apply bg-slate-500 sm:max-w-[400px] h-[100vh] flex flex-col items-center p-3;
-
 }
 
 
