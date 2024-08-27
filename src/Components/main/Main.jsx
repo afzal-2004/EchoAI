@@ -44,7 +44,7 @@ export const Main = () => {
       <section className="main ">
         <nav className="navitems">
           <div className=" geminiText ">
-            <p>Gemini</p>
+            <p>EchoAI</p>
             <IoMdArrowDropdown />
           </div>
           <img src="/AvtarGemini.png" alt="" className="w-[70px]" />
